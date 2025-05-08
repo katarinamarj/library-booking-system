@@ -6,7 +6,7 @@ const year = new Date().getFullYear()
 <template>
   <RouterLink to="/">Home</RouterLink> | 
   <RouterLink to="/about"> About</RouterLink> | 
-  <RouterLink to="/books"> Books</RouterLink> 
+  <RouterLink to="/list"> Books</RouterLink> 
   <RouterView />
   <p>&copy {{ year }} Library</p>
 </template>
