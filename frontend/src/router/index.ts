@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import BookView from '../views/BookView.vue' 
+import ListView from '../views/ListView.vue'
+import AboutView from '../views/AboutView.vue' 
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -9,18 +10,39 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
+      meta: {
+        title: 'Home Page'
+      }
     },
     {
       path: '/about',
       name: 'about',
-      component: () => import('../views/AboutView.vue'),
+      component: AboutView,
+      meta: {
+        title: 'About Page'
+      }
     },
     {
-      path: '/books',
-      name: 'books',
-      component: BookView 
+      path: '/list',
+      name: 'list',
+      component: ListView,
+      meta: {
+        title: 'List'
+      }
     },
+    {
+      path: '/:catchAll(.*)',
+      redirect: '/'
+    }
   ],
+})
+
+router.beforeEach((to, from, next) => {
+  if(to.meta) {
+    document.title = `${to.meta.title} :: Library`
+  }
+
+  next()
 })
 
 export default router
