@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ListView from '../views/ListView.vue'
 import AboutView from '../views/AboutView.vue' 
+import BookView from '@/views/BookView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,6 +29,14 @@ const router = createRouter({
       component: ListView,
       meta: {
         title: 'List'
+      }
+    },
+    {
+      path: '/book/:id',
+      name: 'book',
+      component: BookView,
+      meta: {
+        title: 'Book'
       }
     },
     {
