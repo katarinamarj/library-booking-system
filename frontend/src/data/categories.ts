@@ -1,0 +1,20 @@
+export const bookCategories = [
+  'Fiction',
+  'Science',
+  'History',
+  'Romance',
+  'Technology',
+  'Mystery',
+  'Biography',
+  'Fantasy',
+  'Poetry',
+  'Horror',
+  'Travel',
+  'Philosophy',
+  'Business',
+  'Health',
+  'Art',
+  'Religion',
+  'Cooking',
+  'Education'
+]
