@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import ListView from '../views/ListView.vue'
 import AboutView from '../views/AboutView.vue' 
 import BookView from '../views/BookView.vue'
+import LibraryView from '../views/LibraryView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -37,6 +38,14 @@ const router = createRouter({
       component: BookView,
       meta: {
         title: 'Book'
+      }
+    },
+    {
+      path: '/library',
+      name: 'library',
+      component: LibraryView,
+      meta: {
+        title: 'Libraries'
       }
     },
     {
