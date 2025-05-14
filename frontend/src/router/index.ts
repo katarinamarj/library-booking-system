@@ -4,6 +4,8 @@ import ListView from '../views/ListView.vue'
 import AboutView from '../views/AboutView.vue' 
 import BookView from '../views/BookView.vue'
 import LibraryView from '../views/LibraryView.vue'
+import NewLibrary from '@/views/NewLibrary.vue'
+import EditLibrary from '@/views/EditLibrary.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -46,6 +48,22 @@ const router = createRouter({
       component: LibraryView,
       meta: {
         title: 'Libraries'
+      }
+    },
+    {
+      path: '/library/new',
+      name: 'new-library',
+      component: NewLibrary,
+      meta: {
+        title: 'New Library'
+      }
+    },
+    {
+      path: '/library/:id',
+      name: 'edit-library',
+      component: EditLibrary,
+      meta: {
+        title: 'Edit Library'
       }
     },
     {
