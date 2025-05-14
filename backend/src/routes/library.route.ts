@@ -22,3 +22,17 @@ LibraryRoute.post('/',async (req, res) => {
         LibraryService.createLibrary(req.body)
     )
 })
+
+LibraryRoute.put('/:id', async (req, res) => {
+    await defineRequest(res, async() => {
+        const id = Number(req.params.id)
+        await LibraryService.updateLibrary(id, req.body)
+    })
+})
+
+LibraryRoute.delete('/:id', async (req, res) => {
+    await defineRequest(res, async() => {
+        const id = Number(req.params.id)
+        await LibraryService.deleteLibrary(id)
+    })
+})
