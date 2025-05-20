@@ -5,6 +5,8 @@ import { AppDataSource } from './db'
 import morgan from 'morgan'
 import { BookRoute } from './routes/book.route'
 import { LibraryRoute } from './routes/library.route'
+import { UserRoute } from './routes/user.route'
+import { UserService } from './services/user.service'
  
 const app = express()
 app.use(cors())
@@ -17,6 +19,8 @@ app.get('/', (req: Request, res: Response) => {
     })
 })
 
+app.use(UserService.validateToken)
+app.use('/api/user', UserRoute)
 app.use('/api/book', BookRoute);
 app.use('/api/library', LibraryRoute);
 

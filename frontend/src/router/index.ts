@@ -6,6 +6,9 @@ import BookView from '../views/BookView.vue'
 import LibraryView from '../views/LibraryView.vue'
 import NewLibrary from '@/views/NewLibrary.vue'
 import EditLibrary from '@/views/EditLibrary.vue'
+import UserView from '../views/user/UserView.vue'
+import RegisterView from '../views/user/RegisterView.vue'
+import LoginView from '../views/user/LoginView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,6 +19,30 @@ const router = createRouter({
       component: HomeView,
       meta: {
         title: 'Home Page'
+      }
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginView,
+      meta: {
+        title: 'Login'
+      }
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: RegisterView,
+      meta: {
+        title: 'Register'
+      }
+    },
+    {
+      path: '/user',
+      name: 'user',
+      component: UserView,
+      meta: {
+        title: 'User Panel'
       }
     },
     {
