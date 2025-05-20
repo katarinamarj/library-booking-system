@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Navigation from '@/components/Navigation.vue';
 import type { LibraryModel } from '@/models/library.model';
 import { LibraryService } from '@/services/library.service';
 import { formatDate } from '@/utils';
@@ -22,6 +23,7 @@ function save() {
 </script>
 
 <template>
+    <Navigation />
     <div v-if="library">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">

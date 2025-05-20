@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { BookService } from '@/services/book.service'
 import type { BookModel } from '@/models/book.model'
+import Navigation from '@/components/Navigation.vue'
 
 const route = useRoute()
 const book = ref<BookModel>()
@@ -14,6 +15,7 @@ BookService.getBookById(bookId)
 </script>
 
 <template>
+  <Navigation />
     <div v-if="book">
       <div class="row mt-3">
         <div class="col-md-3 col-9">

@@ -3,12 +3,14 @@ import type { LibraryModel } from '@/models/library.model';
 import { LibraryService } from '@/services/library.service';
 import { ref } from 'vue';
 import { formatDate } from '@/utils';
+import Navigation from '@/components/Navigation.vue';
 
 
 const libraries = ref<LibraryModel[]>([])
 LibraryService.getLibraries().then(rsp => {
     libraries.value = rsp.data
 })
+
 
 function deleteLibrary(id: number) {
     LibraryService.deleteLibraryById(id)
@@ -20,6 +22,7 @@ function deleteLibrary(id: number) {
 
 
 <template>
+    <Navigation />
 <RouterLink to="/library/new" class="btn btn-primary">
         + Add Library
  </RouterLink>

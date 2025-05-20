@@ -4,6 +4,7 @@ import { BookService } from '@/services/book.service'
 import type { BookModel } from '@/models/book.model'
 import type { BookSearchModel } from '@/models/search.model'
 import { bookCategories } from '@/data/categories'
+import Navigation from '@/components/Navigation.vue'
 
 const books = ref<BookModel[]>([])
 const search = ref<BookSearchModel>({ category: '' })
@@ -17,7 +18,7 @@ loadBooks()
 </script>
 
 <template>
-
+  <Navigation />
   <div class="mb-3 mt-3">
     <select class="form-select" v-model="search.category" @change="loadBooks">
       <option value="">Choose category:</option>

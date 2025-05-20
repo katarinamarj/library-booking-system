@@ -1,36 +1,16 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
+
 const year = new Date().getFullYear()
+
 </script>
 
 <template>
   <div class="container">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary ">
-      <div class="container-fluid">
-        <RouterLink class="navbar-brand fs-4" to="/" > <i class="fa-solid fa-book-open-reader"></i> Library        
-        </RouterLink>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-            <li class="nav-item">
-              <RouterLink class="nav-link active" aria-current="page" to="/" exact-active-class="active">Home </RouterLink>
-            </li>
-            <li class="nav-item">
-              <RouterLink class="nav-link" aria-current="page" to="/library" exact-active-class="active">Libraries </RouterLink>
-            </li>
-            <li class="nav-item">
-              <RouterLink class="nav-link" to="/about" exact-active-class="active">About </RouterLink>
-            </li>
-            <li class="nav-item">
-              <RouterLink class="nav-link" to="/list" exact-active-class="active">List </RouterLink>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <RouterView />
-    <p class="text-center mt-3">&copy {{ year }} Library system</p>
+    <RouterView />          
+    <footer class="text-center mt-3">
+      &copy; {{ new Date().getFullYear() }} Library system
+    </footer>
+    
   </div>
 </template>

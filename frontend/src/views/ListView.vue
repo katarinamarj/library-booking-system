@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { ref } from 'vue';
 import type { BookSearchResponse, BookModel } from '@/models/book.model';
+import Navigation from '@/components/Navigation.vue';
 
 const books = ref<BookModel[]>([]);
 
@@ -20,6 +21,7 @@ function getCoverUrl(book: BookModel): string {
 </script>
 
 <template>
+  <Navigation />
   <div v-if="books.length > 0">
     <h2>Book Search Results</h2>
     <ul>

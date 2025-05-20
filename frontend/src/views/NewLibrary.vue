@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Navigation from '@/components/Navigation.vue'
 import { LibraryService } from '@/services/library.service'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
@@ -23,6 +24,7 @@ function save() {
 </script>
 
 <template>
+<Navigation />
 <div v-if="library">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
