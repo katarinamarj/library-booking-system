@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ref } from 'vue';
 import type { BookSearchResponse, BookModel } from '@/models/book.model';
 import Navigation from '@/components/Navigation.vue';
+import Loading from '@/components/Loading.vue';
 
 const books = ref<BookModel[]>([]);
 
@@ -38,8 +39,5 @@ function getCoverUrl(book: BookModel): string {
       </li>
     </ul>
   </div>
-
-  <div v-else>
-    <p>Loading data...</p>
-  </div>
+  <Loading v-else />
 </template>

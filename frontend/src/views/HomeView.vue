@@ -5,6 +5,7 @@ import type { BookModel } from '@/models/book.model'
 import type { BookSearchModel } from '@/models/search.model'
 import { bookCategories } from '@/data/categories'
 import Navigation from '@/components/Navigation.vue'
+import Loading from '@/components/Loading.vue'
 
 const books = ref<BookModel[]>([])
 const search = ref<BookSearchModel>({ category: '' })
@@ -46,6 +47,7 @@ loadBooks()
       </div>
     </div>
   </div>
+  <Loading v-else />
 </template>
 
 <style>

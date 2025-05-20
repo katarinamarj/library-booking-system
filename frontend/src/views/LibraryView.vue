@@ -4,6 +4,7 @@ import { LibraryService } from '@/services/library.service';
 import { ref } from 'vue';
 import { formatDate } from '@/utils';
 import Navigation from '@/components/Navigation.vue';
+import Loading from '@/components/Loading.vue';
 
 
 const libraries = ref<LibraryModel[]>([])
@@ -55,4 +56,5 @@ function deleteLibrary(id: number) {
             </tr>
         </tbody>
     </table>
+    <Loading v-else />
 </template>

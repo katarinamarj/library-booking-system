@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import { BookService } from '@/services/book.service'
 import type { BookModel } from '@/models/book.model'
 import Navigation from '@/components/Navigation.vue'
+import Loading from '@/components/Loading.vue'
 
 const route = useRoute()
 const book = ref<BookModel>()
@@ -72,10 +73,7 @@ BookService.getBookById(bookId)
       </div>
     </div>
   </div>
-  
-  <div v-else>
-    <p>Loading book details...</p>
-  </div>
+  <Loading v-else />
 </template>
   
   
