@@ -23,8 +23,26 @@ export class BookService {
         return await client.get(`/volumes/${id}`)
     }
 
-    static async getBooksByCategory(category: string) {
-       return await client.get(`/volumes?q=subject:${category}&langRestrict=en&maxResults=40`)
+    static async getBooksByCategoryAndQuery(category: string, query?: string) {
+        let parts: string[] = []
+
+        if (category) {
+            parts.push(`subject:${category}`)
+        }
+
+        if (query) {
+            parts.push(query)
+        }
+
+        if (parts.length === 0) {
+            parts.push('books')
+        }
+
+        const q = parts.join('+')
+
+        const url = `/volumes?q=${encodeURIComponent(q)}&langRestrict=en&maxResults=40`
+
+        return await client.get(url)
     }
 
     static async searchBooks(search: BookSearchModel) {
