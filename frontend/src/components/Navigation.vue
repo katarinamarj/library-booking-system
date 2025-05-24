@@ -7,11 +7,11 @@ const logout = useLogout()
 </script>
 
 <template>
-  <div class="container">
+  <div class="container" style="background-color: #f8f9fa;">
     <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
       <div class="container-fluid">
-        <RouterLink class="navbar-brand fs-4" to="/">
-          <i class="fa-solid fa-book-open-reader"></i> Library
+        <RouterLink class="navbar-brand fs-4" to="/" style="color: #36454F;"> 
+          <i class="fa-solid fa-book-open-reader"></i>   <b>Library  </b>
         </RouterLink>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -71,3 +71,50 @@ const logout = useLogout()
     
   </div>
 </template>
+
+<style scoped>
+.navbar {
+  background-color: white !important;
+  border-bottom: 2px solid #dcdcdc;
+}
+
+.navbar-brand {
+  color: #36454F !important;
+  font-weight: bold;
+}
+
+.nav-link {
+  color: #3b3b3b !important;
+  font-weight: 500;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #6082B6 !important;
+}
+
+.nav-link.active {
+  color: #7393B3 !important;
+  font-weight: bold;
+  border-bottom: 2px solid #7393B3;
+}
+
+.navbar-nav .nav-link {
+  font-size: 0.92rem;
+  margin-right: 0.6rem;
+}
+
+.dropdown-menu .dropdown-item {
+  font-size: 0.9rem;
+}
+
+.dropdown-item:hover {
+  background-color: #e9ecef;
+  color: #6082B6;
+}
+
+.navbar-text {
+  font-size: 0.9rem;
+  color: #36454F !important;
+}
+</style>

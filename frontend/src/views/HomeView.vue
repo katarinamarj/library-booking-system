@@ -11,7 +11,7 @@ const books = ref<BookModel[]>([])
 const search = ref<BookSearchModel>({ category: '' })
 
 function loadBooks() {
-BookService.getBooksByCategory(search.value.category)
+  BookService.getBooksByCategoryAndQuery(search.value.category, search.value.query)
     .then(rsp => books.value = rsp.data.items || [])
 }
 
@@ -20,15 +20,26 @@ loadBooks()
 
 <template>
   <Navigation />
-  <div class="mb-3 mt-3">
-    <select class="form-select" v-model="search.category" @change="loadBooks">
-      <option value="">Choose category:</option>
-      <option v-for="c in bookCategories" :key="c" :value="c.toLowerCase()"> {{ c }} </option>
-    </select>
-  </div>
+  <div class="mb-4 mt-4 d-flex justify-content-center align-items-center gap-2 container-fluid">
+  <select class="form-select" v-model="search.category" @change="loadBooks" style="max-width: 200px;">
+    <option value="">Choose category:</option>
+    <option v-for="c in bookCategories" :key="c" :value="c.toLowerCase()">
+      {{ c }}
+    </option>
+  </select>
+
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Search by title..."
+    v-model="search.query"
+    @input="loadBooks"
+    style="max-width: 300px;"
+  />
+</div>
 
   <div class="card-holder" v-if="books.length">
-    <div class="card book-card" v-for="b in books" :key="b.id">
+    <div class="card book-card mb-4" v-for="b in books" :key="b.id">
       <img
         :src="b.volumeInfo.imageLinks?.thumbnail || 'https://via.placeholder.com/150'"
         class="card-img-top"
@@ -41,8 +52,8 @@ loadBooks()
         </p>
       </div>
       <div class="card-footer">
-        <RouterLink :to="`/book/${b.id}`" class="btn btn-sm btn-outline-primary">
-          <i class="fa-solid fa-eye"></i> Details
+        <RouterLink :to="`/book/${b.id}`" class="btn btn-sm custom-btn">
+          <i class="fa-solid fa-eye"></i>   Details
         </RouterLink>
       </div>
     </div>
@@ -57,6 +68,7 @@ loadBooks()
     gap: 1rem;
     justify-content: center;
   }
+  
   .book-card {
     width: 18rem;
     min-height: 200px;
@@ -66,5 +78,16 @@ loadBooks()
     height: 320px; 
     object-fit: cover; 
     width: 100%; 
+  }
+
+  .custom-btn {
+  background-color: #7393B3;
+  color: white;
+  border: none;
+ }
+
+  .custom-btn:hover {
+    background-color: #5f7ea1; 
+    color: white;
   }
 </style>

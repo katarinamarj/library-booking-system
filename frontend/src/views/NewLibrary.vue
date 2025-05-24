@@ -25,14 +25,14 @@ function save() {
 
 <template>
 <Navigation />
-<div v-if="library">
-        <nav aria-label="breadcrumb">
+<div v-if="library" class="container-fluid" style="width: 90%; height: 450px;">
+        <nav aria-label="breadcrumb" class="mt-4 mb-4">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
                     <RouterLink to="/">Home</RouterLink>
                 </li>
                 <li class="breadcrumb-item">
-                    <RouterLink to="/cinema">Libraries</RouterLink>
+                    <RouterLink to="/library">Libraries</RouterLink>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
                     New Library
@@ -48,9 +48,15 @@ function save() {
                 <label for="location" class="form-label">Location:</label>
                 <input type="text" class="form-control" id="location" v-model="library.location">
             </div>
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn" style="background-color: #7393B3; color: white;">
                 <i class="fa-solid fa-floppy-disk"></i> Save
             </button>
         </form>
     </div>
 </template>
+
+<style scoped>
+.breadcrumb a {
+  color: #7393B3; 
+}
+</style>

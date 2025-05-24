@@ -23,21 +23,51 @@ function getCoverUrl(book: BookModel): string {
 
 <template>
   <Navigation />
-  <div v-if="books.length > 0">
-    <h2>Book Search Results</h2>
-    <ul>
-      <li v-for="book in books" :key="book.id" style="margin-bottom: 2rem">
-        <img :src="getCoverUrl(book)" :alt="book.volumeInfo.title" width="200" />
-        <h3>{{ book.volumeInfo.title }}</h3>
-        <p>Author: {{ book.volumeInfo.authors?.join(', ') || 'Unknown' }}</p>
-        <p>Published: {{ book.volumeInfo.publishedDate || 'Unknown' }}</p>
-        <p>Publisher: {{ book.volumeInfo.publisher || 'Unknown' }}</p>
-        <p>Language: {{ book.volumeInfo.language || 'Unknown' }}</p>
-        <p>Categories: {{ book.volumeInfo.categories?.join(', ') || 'None' }}</p>
-        <p v-if="book.volumeInfo.pageCount">Pages: {{ book.volumeInfo.pageCount }}</p>
-        <p v-if="book.volumeInfo.description"> Description: {{ book.volumeInfo.description }}</p>
-      </li>
-    </ul>
+  <div class="container mt-4">
+    <h2 class="mb-4 text-center" style="color: #36454F;">Books List</h2>
+
+    <div v-if="books.length > 0" class="row g-4">
+      <div
+        v-for="book in books"
+        :key="book.id"
+        class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch"
+      >
+        <div class="card h-100 shadow-sm">
+          <img
+            :src="getCoverUrl(book)"
+            class="card-img-top"
+            :alt="book.volumeInfo.title"
+            style="height: 300px; object-fit: cover;"
+          />
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ book.volumeInfo.title }}</h5>
+            <p class="card-text mb-1"><strong>Author:</strong> {{ book.volumeInfo.authors?.join(', ') || 'Unknown' }}</p>
+            <p class="card-text mb-1"><strong>Published:</strong> {{ book.volumeInfo.publishedDate || 'Unknown' }}</p>
+            <p class="card-text mb-1"><strong>Publisher:</strong> {{ book.volumeInfo.publisher || 'Unknown' }}</p>
+            <p class="card-text mb-1"><strong>Language:</strong> {{ book.volumeInfo.language || 'Unknown' }}</p>
+            <p class="card-text mb-1"><strong>Categories:</strong> {{ book.volumeInfo.categories?.join(', ') || 'None' }}</p>
+            <p class="card-text" v-if="book.volumeInfo.pageCount">
+              <strong>Pages:</strong> {{ book.volumeInfo.pageCount }}
+            </p>
+            <p class="card-text mt-auto" v-if="book.volumeInfo.description">
+              <small>{{ book.volumeInfo.description.slice(0, 100) }}...</small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <Loading v-else />
   </div>
-  <Loading v-else />
 </template>
+
+<style>
+.card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #36454F;
+}
+
+.card-text {
+  font-size: 0.85rem;
+}
+</style>

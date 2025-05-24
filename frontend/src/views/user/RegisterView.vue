@@ -13,9 +13,6 @@ const phone = ref<string>('')
 const password = ref<string>('')
 const repeat = ref<string>('')
 
-
-
-
 async function doRegister() {
     if (!firstName.value || !lastName.value || !email.value || !phone.value || !password.value || !repeat.value) {
         alert('Sva polja su obavezna')
@@ -36,11 +33,10 @@ async function doRegister() {
             password: password.value
         })
 
-        // automatski login posle registracije
         const rsp = await login(email.value, password.value)
-        setTokens(rsp.data) // postavi access + refresh token
+        setTokens(rsp.data) 
 
-        router.push('/library') // idi na početnu stranicu za korisnika
+        router.push('/library') 
     } catch (e) {
         alert('Registracija ili prijava neuspešna')
     }
@@ -51,14 +47,14 @@ async function doRegister() {
 <template>
     <Navigation />
     <div class="auth">
-        <h3 class="text-center">PSEP 2025<br>REGISTRUJ NOVI NALOG</h3>
+        <h3 class="text-center" style="margin-bottom: 40px; color:#36454F"><br>CREATE AN ACCOUNT</h3>
         <form v-on:submit.prevent="doRegister">
             <div class="mb-3">
-                <label for="phone" class="form-label">Ime:</label>
+                <label for="phone" class="form-label">First Name:</label>
                 <input type="text" class="form-control" id="phone" v-model="firstName">
             </div>
             <div class="mb-3">
-                <label for="phone" class="form-label">Prezime:</label>
+                <label for="phone" class="form-label">Last Name:</label>
                 <input type="text" class="form-control" id="phone" v-model="lastName">
             </div>
             <div class="mb-3">
@@ -66,25 +62,64 @@ async function doRegister() {
                 <input type="email" class="form-control" id="email" v-model="email">
             </div>
             <div class="mb-3">
-                <label for="phone" class="form-label">Telefon:</label>
+                <label for="phone" class="form-label">Phone:</label>
                 <input type="text" class="form-control" id="phone" v-model="phone">
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Lozinka:</label>
+                <label for="password" class="form-label">Password:</label>
                 <input type="password" class="form-control" id="password" v-model="password">
             </div>
             <div class="mb-3">
-                <label for="repeat" class="form-label">Ponovljena lozinka:</label>
+                <label for="repeat" class="form-label">Confirm password:</label>
                 <input type="password" class="form-control" id="repeat" v-model="repeat">
             </div>
             <div class="btn-group">
-                <button type="submit" class="btn btn-primary">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Registruj se
+                <button type="submit" class="btn full">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Register
                 </button>
-                <RouterLink class="btn btn-outline-secondary" to="/login">
-                    <i class="fa-solid fa-right-to-bracket"></i> Već posedujem nalog
+                <RouterLink class="btn outline" to="/login">
+                    <i class="fa-solid fa-right-to-bracket"></i> Already have an account?
                 </RouterLink>
             </div>
         </form>
     </div>
 </template>
+
+<style scoped>
+.btn {
+  padding: 0.3em 0.8em;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  border: 2px solid transparent;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.btn.full {
+  background-color: #7393B3;
+  color: white;
+  border-color: #7393B3;
+}
+
+.btn.full:hover {
+  background-color: #6082B6;
+  border-color: #6082B6;
+}
+
+.btn.outline {
+  background-color: transparent;
+  color: #7393B3;
+  border: 2px solid #7393B3;
+}
+
+.btn.outline:hover {
+  background-color: 	#708090;
+  color: white;
+  border-color: 	#708090;
+}
+</style>

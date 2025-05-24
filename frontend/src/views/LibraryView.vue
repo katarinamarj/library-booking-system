@@ -23,11 +23,12 @@ function deleteLibrary(id: number) {
 
 
 <template>
-    <Navigation />
-<RouterLink to="/library/new" class="btn btn-primary">
+<Navigation />
+<div class="container-fluid" style="min-height: 450px; width: 90%;">
+<RouterLink to="/library/new" class="btn mt-3 mb-3" style="background-color: #7393B3; color: white;">
         + Add Library
  </RouterLink>
-<table class="table table-striped table-hover" v-if="libraries">
+<table class="table  table-hover custom-library-table" v-if="libraries">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -45,10 +46,10 @@ function deleteLibrary(id: number) {
                 <td>{{ formatDate(l.updatedAt ?? l.createdAt) }}</td>
                 <td>
                     <div class="btn-group">
-                        <RouterLink :to="`/library/${l.libraryId}`" class="btn btn-sm btn-success">
+                        <RouterLink :to="`/library/${l.libraryId}`" class="btn btn-sm btn-success" title="Edit Library">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </RouterLink>
-                        <button type="button" class="btn btn-sm btn-danger" @click="deleteLibrary(l.libraryId)">
+                        <button type="button" class="btn btn-sm btn-danger ms-3" title="Delete Library" @click="deleteLibrary(l.libraryId)">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </div>
@@ -56,5 +57,30 @@ function deleteLibrary(id: number) {
             </tr>
         </tbody>
     </table>
-    <Loading v-else />
+<Loading v-else />
+</div>
 </template>
+
+<style>
+.custom-library-table th,
+.custom-library-table td {
+  vertical-align: middle;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.custom-library-table thead th {
+  background-color: 	#D3D3D3;
+  color: #333;
+  font-weight: 600;
+  border-bottom: 2px solid #ccc;
+}
+
+.custom-library-table tr:hover td {
+  background-color: #f9f9f9;
+}
+
+.btn-group .btn i {
+  pointer-events: none; 
+}
+</style>
