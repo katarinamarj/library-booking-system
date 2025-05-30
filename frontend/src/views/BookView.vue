@@ -19,8 +19,16 @@ BookService.getBookById(bookId)
   <Navigation />
   <div v-if="book" class="container-fluid" style="width: 90%;">
     <div class="row mt-3">
-      <div class="col-12 mb-4 mt-3">
-        <h3 class="text-primary fw-bold" style="color: #36454F !important;">{{ book.volumeInfo.title }}</h3>
+      <div class="col-12 mb-4 mt-3 d-flex justify-content-between align-items-center">
+        <h3 class="text-primary fw-bold mb-0" style="color: #36454F !important;">
+          {{ book.volumeInfo.title }}
+        </h3>
+        <router-link
+          :to="{ name: 'book-reservation', params: { id: bookId } }"
+          class="btn" style="background-color: #7393B3; color: white;"
+        >
+          <i class="fa-solid fa-book"></i>  Reserve Book
+        </router-link>
       </div>
 
       <div class="col-md-3 col-9">
@@ -83,6 +91,10 @@ BookService.getBookById(bookId)
   .book-image {
     transition: transform 0.3s ease;
     width: 250px;
+  }
+
+  .breadcrumb a {
+    color: #7393B3; 
   }
 </style>
   

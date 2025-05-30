@@ -9,6 +9,8 @@ import EditLibrary from '@/views/EditLibrary.vue'
 import UserView from '../views/user/UserView.vue'
 import RegisterView from '../views/user/RegisterView.vue'
 import LoginView from '../views/user/LoginView.vue'
+import BookReservation from '../views/reservations/BookReservation.vue'
+import ReservationView from '../views/reservations/ReservationView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -67,6 +69,22 @@ const router = createRouter({
       component: BookView,
       meta: {
         title: 'Book'
+      }
+    },
+    {
+      path: '/reserve/:id',
+      name: 'book-reservation', 
+      component: BookReservation,
+      meta: {
+        title: 'Reserve Book'
+      }
+    },
+    {
+      path: '/reservations',
+      name: 'reservations', 
+      component: ReservationView,
+      meta: {
+        title: 'My Reservations'
       }
     },
     {
