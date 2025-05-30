@@ -35,7 +35,7 @@ function deleteLibrary(id: number) {
                 <th scope="col">Name</th>
                 <th scope="col">Location</th>
                 <th scope="col">Updated at</th>
-                <th scope="col">Options</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -45,7 +45,7 @@ function deleteLibrary(id: number) {
                 <td>{{ l.location }}</td>
                 <td>{{ formatDate(l.updatedAt ?? l.createdAt) }}</td>
                 <td>
-                    <div class="btn-group">
+                    <div  class="d-flex align-items-center">
                         <RouterLink :to="`/library/${l.libraryId}`" class="btn btn-sm btn-success" title="Edit Library">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </RouterLink>
