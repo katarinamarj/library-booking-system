@@ -4,6 +4,7 @@ import { User } from "../entities/User";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import type { Response } from "express";
+import { dataExists } from "../utils";
 
 const repo = AppDataSource.getRepository(User)
 const tokenSecret = process.env.JWT_SECRET
@@ -125,9 +126,20 @@ export class UserService {
             }
         })
 
-        if (data == null)
-            throw new Error('NOT_FOUND')
+       return dataExists(data)
+    }
+    
+    static async getUserIdByEmail(email: string) {
+        const user = await repo.findOne({
+            select: {
+                userId: true
+            },
+            where: {
+                email: email,
+                deletedAt: IsNull()
+            }
+        })
 
-        return data
+        return dataExists(user).userId
     }
 }
