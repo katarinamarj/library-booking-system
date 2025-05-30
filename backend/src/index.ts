@@ -7,6 +7,7 @@ import { BookRoute } from './routes/book.route'
 import { LibraryRoute } from './routes/library.route'
 import { UserRoute } from './routes/user.route'
 import { UserService } from './services/user.service'
+import { ReservationRoute } from './routes/reservation.route'
  
 const app = express()
 app.use(cors())
@@ -23,6 +24,7 @@ app.use(UserService.validateToken)
 app.use('/api/user', UserRoute)
 app.use('/api/book', BookRoute);
 app.use('/api/library', LibraryRoute);
+app.use('/api/reservation', ReservationRoute)
 
 app.get('{/*path}', function (req, res){
    res.status(404).json({

@@ -6,13 +6,11 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Book } from "./Book";
-import { Library } from "./Library";
 import { User } from "./User";
+import { Library } from "./Library";
 
-@Index("fk_reservation_book_id_idx", ["bookId"], {})
-@Index("fk_reservation_library_id_idx", ["libraryId"], {})
 @Index("fk_reservation_user_id_idx", ["userId"], {})
+@Index("fk_reservation_library_id_idx", ["libraryId"], {})
 @Entity("reservation", { schema: "library_db" })
 export class Reservation {
   @PrimaryGeneratedColumn({
@@ -25,21 +23,17 @@ export class Reservation {
   @Column("int", { name: "user_id", unsigned: true })
   userId: number;
 
-  @Column("int", { name: "book_id", unsigned: true })
-  bookId: number;
-
   @Column("int", { name: "library_id", unsigned: true })
   libraryId: number;
 
-  @Column("datetime", { name: "reserved_at", nullable: true })
-  reservedAt: Date | null;
+  @Column("varchar", { name: "google_book_id", length: 64, nullable: true })
+  googleBookId: string | null;
 
-  @Column("enum", {
-    name: "status",
-    nullable: true,
-    enum: ["pending", "approved", "returned"],
-  })
-  status: "pending" | "approved" | "returned" | null;
+  @Column("varchar", { name: "book_title", length: 255, nullable: true })
+  bookTitle: string | null;
+
+  @Column("varchar", { name: "book_author", length: 255, nullable: true })
+  bookAuthor: string | null;
 
   @Column("datetime", {
     name: "created_at",
@@ -53,24 +47,14 @@ export class Reservation {
   @Column("datetime", { name: "deleted_at", nullable: true })
   deletedAt: Date | null;
 
-  @ManyToOne(() => Book, (book) => book.reservations, {
-    onDelete: "CASCADE",
-    onUpdate: "CASCADE",
-  })
-  @JoinColumn([{ name: "book_id", referencedColumnName: "bookId" }])
-  book: Book;
-
-  @ManyToOne(() => Library, (library) => library.reservations, {
-    onDelete: "NO ACTION",
-    onUpdate: "NO ACTION",
-  })
-  @JoinColumn([{ name: "library_id", referencedColumnName: "libraryId" }])
-  library: Library;
-
   @ManyToOne(() => User, (user) => user.reservations, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
   @JoinColumn([{ name: "user_id", referencedColumnName: "userId" }])
   user: User;
+
+  @ManyToOne(() => Library, (library) => library.reservations)
+  @JoinColumn([{ name: "library_id", referencedColumnName: "libraryId" }])
+  library: Library;
 }
