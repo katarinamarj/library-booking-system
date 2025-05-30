@@ -39,6 +39,7 @@ useAxios('/user/self')
                     </tr>    
                     </tbody>
                 </table>
+                <RouterLink to="/user/edit" class="btn mt-3" style="background-color: #7393B3; color: white;">Edit Profile</RouterLink>
             </div>
         </div>
     </div>

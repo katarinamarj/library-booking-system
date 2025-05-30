@@ -9,6 +9,7 @@ import EditLibrary from '@/views/EditLibrary.vue'
 import UserView from '../views/user/UserView.vue'
 import RegisterView from '../views/user/RegisterView.vue'
 import LoginView from '../views/user/LoginView.vue'
+import EditUser from '../views/user/EditUser.vue'
 import BookReservation from '../views/reservations/BookReservation.vue'
 import ReservationView from '../views/reservations/ReservationView.vue'
 
@@ -44,7 +45,14 @@ const router = createRouter({
       name: 'user',
       component: UserView,
       meta: {
-        title: 'User Panel'
+        title: 'My Account'
+      }
+    }, {
+      path: '/user/edit',
+      name: 'edit-user',
+      component: EditUser,
+      meta: {
+        title: 'Edit Profile'
       }
     },
     {

@@ -103,3 +103,7 @@ export function formatDate(iso: string) {
         hour12: false
     })
 }
+
+export async function updateUser(data: any) {
+    return await useAxios('/user/self', 'put', data)
+}
