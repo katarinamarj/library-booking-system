@@ -33,3 +33,9 @@ UserRoute.post('/refresh', async (req, res) => {
         return await UserService.refreshToken(token)
     })
 })
+
+UserRoute.put('/self', async (req: any, res) => {
+    await defineRequest(res, async () =>
+        await UserService.updateUser(req.user.email, req.body)
+    )
+})

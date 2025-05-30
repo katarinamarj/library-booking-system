@@ -142,4 +142,29 @@ export class UserService {
 
         return dataExists(user).userId
     }
+
+    static async updateUser(email: string, update: Partial<User>) {
+        const user = await this.getUserByEmail(email)
+
+        if (!user) throw new Error('USER_NOT_FOUND')
+
+        if (update.password) {
+            update.password = await bcrypt.hash(update.password, 12)
+        } else {
+            delete update.password
+        }
+
+        Object.assign(user, update)
+        
+        await repo.save({ ...user, updated_at: new Date() })
+
+        return {
+            userId: user.userId,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            phone: user.phone
+        }
+    }
+
 }
